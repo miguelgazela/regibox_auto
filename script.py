@@ -15,6 +15,8 @@ local_tz = pytz.timezone("Europe/Lisbon")
 email = os.getenv('EMAIL')
 password = os.getenv('PASSWORD')
 
+print("Script script!")
+
 # Function to extract the timestamp from the div's ID
 def extract_timestamp(time_slot_id):
     # Use regex to find the timestamp (assuming the timestamp is numeric and appears after 'feed_time_slot')
@@ -124,7 +126,7 @@ else:
         print('Calendar is visible')
 
         # 3 days ahead because that's the limit on Regibox
-        next_day_date = get_next_available_day(3)
+        next_day_date = get_next_available_day(1)
         print(next_day_date)
 
         next_day_element = WebDriverWait(driver, 5).until(

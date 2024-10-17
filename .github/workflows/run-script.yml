@@ -38,6 +38,12 @@ jobs:
           sudo apt-get install -y chromium-browser
           sudo apt-get install -y chromium-chromedriver
 
+      - name: Set up virtual display
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb
+          Xvfb :99 -ac &
+
       - name: Run the script
         run: |
           python script.py
@@ -45,5 +51,3 @@ jobs:
           EMAIL: ${{ secrets.EMAIL }}
           PASSWORD: ${{ secrets.PASSWORD }}
           DISPLAY: ":99"
-          CHROME_BIN: /usr/bin/chromium-browser
-          CHROME_DRIVER: /usr/bin/chromedriver
