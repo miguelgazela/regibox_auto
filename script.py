@@ -64,7 +64,7 @@ def click_enroll_button(slot_element):
     try:
         enroll_button = slot_element.find_element(By.XPATH, ".//button[text()='INSCREVER']")
         driver.execute_script("arguments[0].click();", enroll_button)
-        print("Clicked 'INSCREVER' button!")
+        print("Tried to book this slot!")
     except Exception as e:
         print(f"No 'INSCREVER' button found or could not click: {str(e)}")
 
@@ -77,7 +77,7 @@ days_to_skip = [0, 3] # 0 = Monday, 3 = Thursday
 current_weekday = datetime.now().weekday()
 
 # check if the current day is in the skip list
-if current_weekday in days_to_skip and False:
+if current_weekday in days_to_skip:
     print("Script won't run today because it's a day to skip.")
 else:
     print("Running script as it's an allowed day.")
@@ -102,7 +102,7 @@ else:
             EC.visibility_of_element_located((By.ID, "login"))
         )
 
-        print("Login visible")
+        print("Trying to login")
 
         # Now that the login form is visible, fill out the form
         username_field.send_keys(email)  # Enter username
@@ -127,12 +127,11 @@ else:
 
         # 3 days ahead because that's the limit on Regibox
         next_day_date = get_next_available_day(1)
-        print(next_day_date)
+        print(f"Checking slots for : {next_day_date}")
 
         next_day_element = WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.XPATH, f"//div[contains(@data-date, '{next_day_date}')]"))
         )
-        #print(next_day_element.get_attribute('outerHTML'))
 
         driver.execute_script("arguments[0].click();", next_day_element)
 
@@ -147,10 +146,9 @@ else:
                                 
                 if timestamp:
                     readable_time, weekday = convert_to_local_time(timestamp)
-                    print(f"Class starts at: {readable_time} (Weekday: {weekday})")
                     
                     if is_valid_slot_for_day(weekday, readable_time):
-                        print("valid slot!")
+                        print(f"Class starts at: {readable_time} (Weekday: {weekday})")
                         click_enroll_button(slot)
         else:
             print("No time slots found")

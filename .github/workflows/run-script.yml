@@ -3,16 +3,15 @@ name: Run Regibox Script Daily
 on:
   schedule:
     # Run at 10:31 on Wednesdays, config is UTC time
-    #- cron: '31 9 * * WED'
+    - cron: '31 9 * * WED'
     # Run at 11:41 on Wednesdays
-    #- cron: '41 10 * * WED'
+    - cron: '41 10 * * WED'
     # Run at 17:01 every day
-    #- cron: '1 16 * * *'
+    - cron: '1 16 * * *'
     # Run at 18:01 every day
-    #- cron: '1 17 * * *'
+    - cron: '1 17 * * *'
     # Run at 19:01 only on Saturdays
-    #- cron: '1 18 * * SAT'
-    - cron: '*/5 * * * *'
+    - cron: '1 18 * * SAT'
   workflow_dispatch:
 
 jobs:
