@@ -126,7 +126,7 @@ else:
         print('Calendar is visible')
 
         # 3 days ahead because that's the limit on Regibox
-        next_day_date = get_next_available_day(1)
+        next_day_date = get_next_available_day(3)
         print(f"Checking slots for : {next_day_date}")
 
         next_day_element = WebDriverWait(driver, 5).until(
